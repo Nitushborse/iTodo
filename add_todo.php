@@ -26,8 +26,8 @@ if (isset($_POST["submit"]) && $_SERVER['REQUEST_METHOD'] == "POST") {
 
 
     // Check the card title is already exists or not
-    $stmt = $con->conn->prepare("SELECT * FROM `todo_card` WHERE `title` = ?");
-    $stmt->bind_param("s", $card_title);
+    $stmt = $con->conn->prepare("SELECT * FROM `todo_card` WHERE `title` = ? AND `user_id` = ?");
+    $stmt->bind_param("si", $card_title, $user_id);
     $stmt->execute();
     $result1 = $stmt->get_result();
     if ($result1->num_rows > 0) {
