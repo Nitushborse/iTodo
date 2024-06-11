@@ -65,22 +65,19 @@ if (isset($_GET['id'])) {
                         </div>
                         <div class="d-lg-none d-block border-top border-dark border-3 my-3"></div>
                         <div class="col-2 fs-4 d-flex gap-2 border-md-top">
-                        <a href="delete_sub_todo.php?id=<?= urlencode($row['id']); ?>&todo_id=<?= urlencode($id); ?>">
+                            <a href="delete_sub_todo.php?id=<?= urlencode($row['id']); ?>&todo_id=<?= urlencode($id); ?>">
 
                                 <img style="width: 30px;" src="./assets/delete_icon.png" alt="icon">
                             </a>
-
-                            <a href="update_sub_todo.php?id=<?= urlencode($row['id']); ?>&todo_id=<?= urlencode($id); ?>">
-                                <img style="width: 30px;" src="./assets/update_icon.png" alt="icon">
-                            </a>
+                            <?php if (($row['is_complete']) == 0): ?>
+                                <a href="update_sub_todo.php?id=<?= urlencode($row['id']); ?>&todo_id=<?= urlencode($id); ?>">
+                                    <img style="width: 30px;" src="./assets/update_icon.png" alt="icon">
+                                </a>
+                            <?php endif ?>
 
                             <a href="check_is_complete.php?id=<?= urlencode($row['id']); ?>&todo_id=<?= urlencode($id); ?>">
-                                <img 
-                                    style="width: 30px;"
-                                    <?php $is_complete = ($row['is_complete']) == 0 ? "complete_icon.png" : "not_complete_icon.png"; ?> 
-                                    src="./assets/<?= $is_complete?>" 
-                                    alt="icon"
-                                >
+                                <img style="width: 30px;" <?php $is_complete = ($row['is_complete']) == 0 ? "complete_icon.png" : "not_complete_icon.png"; ?> 
+                                src="./assets/<?= $is_complete ?>" alt="icon">
                             </a>
                         </div>
                     </div>
